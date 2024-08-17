@@ -1,4 +1,4 @@
-name: xview3_detect
+name: ships
 channels:
   - pytorch
   - defaults
@@ -118,8 +118,9 @@ dependencies:
   - pysocks=1.7.1=py39h06a4308_0
   - python=3.9.7=h12debd9_1
   - python-dateutil=2.8.2=pyhd3eb1b0_0
-  - pytorch=1.10.1=py3.9_cuda10.2_cudnn7.6.5_0
-  - pytorch-mutex=1.0=cuda
+  # conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+  # - pytorch=1.10.1=py3.9_cuda10.2_cudnn7.6.5_0
+  # - pytorch-mutex=1.0=cuda
   - pytz=2021.3=pyhd3eb1b0_0
   - pywavelets=1.1.1=py39h6323ea4_4
   - requests=2.27.1=pyhd3eb1b0_0
