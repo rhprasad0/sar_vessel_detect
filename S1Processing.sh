@@ -35,7 +35,7 @@ echo
 
 # Get image footprint
 conda activate ships
-gdal_footprint $model_input_folder/VH_dB.tif $model_input_folder/footprint.geojson
+gdal_footprint $model_input_folder/VH_dB.tif $model_input_folder/footprint.geojson -overwrite
 
 # Select bathy raster
 conda activate gpd # geopandas does not like the repo env
@@ -65,4 +65,11 @@ python -m xview3.infer.inference --image_folder ../model_input/ \
 cd ..
 echo
 echo "*** Inference complete!!! ***"
+echo
+
+# Convert predictions to spatial predictions
+conda activate gpd
+python3 /home/ryan/sar_vessel_detect/csv_to_gdf.py
+echo
+echo "*** Predictions projected to map ***"
 echo
