@@ -1,6 +1,10 @@
 import pandas as pd
 import geopandas as gpd
 import sys
+from sqlalchemy import create_engine, text
+from credentials import *
+
+TABLE_NAME = "ships"
 
 aoi = gpd.read_file("/home/ryan/sar_vessel_detect/model_input/1/footprint.geojson")
 df = pd.read_csv("/home/ryan/sar_vessel_detect/src/out.csv")
@@ -14,4 +18,9 @@ df['date'] = pd.to_datetime(date)
 gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df['utm_long'], df['utm_lat']), crs=aoi.crs)
 gdf_reproj = gdf.to_crs(epsg=4326)
 
-# TODO: To PostGIS we go!!
+# Was unable to use psycopg3
+engine = create_engine(f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_URL}:{POSTGRES_PORT}/{POSTGRES_DB}")
+gdf_reproj.to_postgis(
+    name=TABLE_NAME, 
+    con=engine,
+    if_exists="replace") 

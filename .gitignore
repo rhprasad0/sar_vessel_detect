@@ -4,3 +4,4 @@ bathymetry/
 data/models/
 src/
 s1_safe/
+credentials.py
