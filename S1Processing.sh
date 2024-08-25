@@ -115,7 +115,7 @@ echo
 
 # Convert predictions to spatial predictions
 conda activate gpd
-python3 /home/ryan/sar_vessel_detect/csv_to_gdf.py
+python3 /home/ryan/sar_vessel_detect/csv_to_gdf.py $datetime
 echo
 echo "*** Predictions projected to map ***"
 echo
