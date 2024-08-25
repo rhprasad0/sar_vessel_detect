@@ -67,6 +67,16 @@ echo
 echo "*** Inference complete!!! ***"
 echo
 
+# Grab date/time of image
+cd s1_safe
+unzip $s1scene_path
+datetime=$(gdalinfo ${s1scene_name::-4} -json  | jq -r .metadata | jq -r .'[""]' | jq -r .ACQUISITION_STOP_TIME)
+rm -r ${s1scene_name::-4}
+cd ..
+echo
+echo "*** Inference complete!!! ***"
+echo
+
 # Convert predictions to spatial predictions
 conda activate gpd
 python3 /home/ryan/sar_vessel_detect/csv_to_gdf.py
